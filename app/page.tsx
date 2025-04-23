@@ -1,12 +1,13 @@
-import { Button } from "@/components/ui/button";
+
+import Navbar from "@/components/navbar";
 import Hero from "@/section/hero";
-import {  TreeDeciduous } from "lucide-react";
-import Link from "next/link";
 
 export default function Home() {
   return (
-  <div className="flex flex-col items-center">
+  <div>
+    
     <Hero/>
+    
   </div>
   );
 }
