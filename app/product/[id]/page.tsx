@@ -1,3 +1,5 @@
+import ImageToolkits from "@/components/imagetoolkit";
+import { Image } from "@imagekit/next";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -76,6 +78,14 @@ const  ProductId  = async ({ params }: ProductIdProps) => {
             {/* Column 1: Product Images */}
             <div className="md:col-span-2 bg-white p-4 rounded-lg shadow-sm">
               <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
+              <ImageToolkits
+              
+              src="Phone/galaxy.jpg"
+              width={800}
+              height={800}
+              alt="ax"
+              className="h-full w-full object-cover object-center"
+              />
                 {/* <Image
                   src={product.images[0]}
                   alt={product.name}
@@ -211,7 +221,7 @@ const  ProductId  = async ({ params }: ProductIdProps) => {
                 <dl className="mt-2 grid grid-cols-1 gap-x-4 gap-y-2">
                   <div className="border-t border-gray-200 pt-2">
                     <dt className="text-sm font-medium text-gray-500">Display</dt>
-                    <dd className="text-sm text-gray-900">6.7" AMOLED, 120Hz refresh rate</dd>
+                    <dd className="text-sm text-gray-900">6.7&quot; AMOLED, 120Hz refresh rate</dd>
                   </div>
                   <div className="border-t border-gray-200 pt-2">
                     <dt className="text-sm font-medium text-gray-500">Processor</dt>
