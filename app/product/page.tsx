@@ -7,6 +7,8 @@ import {
      Filter, 
      ArrowDownWideNarrow 
    } from 'lucide-react';
+import { Image } from "@imagekit/next";
+import ImageToolkits from "@/components/imagetoolkit";
 
 type Product = {
      id: number;
@@ -113,7 +115,7 @@ const Product = () => {
               <ArrowDownWideNarrow className="h-4 w-4 text-gray-500 mr-2" />
               <select
                 id="sort"
-                className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className="text-black block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
                 <option>Sort by: Featured</option>
                 <option>Price: Low to High</option>
@@ -126,7 +128,7 @@ const Product = () => {
               <Filter className="h-4 w-4 text-gray-500 mr-2" />
               <select
                 id="filter"
-                className="block w-full rounded-md border-gray-300 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                className=" text-black block w-full rounded-md border-gray-600 py-2 pl-3 pr-10 text-base focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
               >
                 <option>All Brands</option>
                 <option>TechMaster</option>
@@ -154,8 +156,22 @@ const Product = () => {
                         {product.name}
                       </Link>
                     </h3>
+                    <ImageToolkits
+                     src="Phone/galaxy.jpg"
+                     width={800}
+                     height={800}
+                     alt="ax"
+                     className="h-full w-full object-cover object-center"
+                    />
                     <p className="text-sm text-gray-500 mt-1">{product.brand}</p>
                   </div>
+                  
+                </div>
+
+                {/* Rating */}
+                <div className="mt-2 flex items-center">
+                
+                  <div className="flex">
                   {product.inStock ? (
                     <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                       In Stock
@@ -165,11 +181,6 @@ const Product = () => {
                       Out of Stock
                     </span>
                   )}
-                </div>
-
-                {/* Rating */}
-                <div className="mt-2 flex items-center">
-                  <div className="flex">
                     {[0, 1, 2, 3, 4].map((rating) => (
                       <Star
                         key={rating}
