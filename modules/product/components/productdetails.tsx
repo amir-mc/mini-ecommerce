@@ -1,6 +1,8 @@
+
 import ImageToolkits from "@/components/imagetoolkit";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
+
 
 
 
@@ -15,7 +17,7 @@ const  ProductDeatils  = async ( product:any  ) => {
         { id: 3, name: 'Smartphone X9 Lite', price: 549.99, image: '/related3.jpg' },
         { id: 4, name: 'Smartphone X8 Pro', price: 649.99, image: '/related4.jpg' }
       ];
-    
+
     return ( 
         <div className="bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -84,7 +86,7 @@ const  ProductDeatils  = async ( product:any  ) => {
             <div className="bg-white p-6 rounded-lg shadow-sm">
               <h1 className="text-2xl font-bold text-gray-900">{product.name}</h1>
               <p className="text-gray-600 mt-1">{product.brand}</p>
-              <p className="text-gray-600 mt-1">product ID: {product.id}</p>
+              <p className="text-gray-600 mt-1">product ID: </p>
               
               <div className="mt-4 flex items-center">
                 <div className="flex">

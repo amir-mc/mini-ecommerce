@@ -5,7 +5,7 @@ import Link from "next/link";
 const Hero = () => {
     return ( 
 
-        <section className="w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-6 md:px-16 py-20 ">
+        <section className="w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-10 md:px-16 py-10 ">
         {/* Left Part */}
         <div className="w-full md:w-1/2 mb-10 md:mb-0 text-center md:text-left">
           <h1 className="text-4xl md:text-6xl font-bold leading-tight">
