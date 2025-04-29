@@ -1,5 +1,6 @@
 
 import ImageToolkits from "@/components/imagetoolkit";
+import { prisma, Promisetype } from "@/lib/prisma";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 
@@ -7,10 +8,13 @@ import Link from "next/link";
 
 
 const  ProductDeatils  = async ( product:any  ) => {
+  const database :Promisetype.product[] = await prisma.product.findMany();
+  const dataimage :Promisetype.image[]  = await prisma.image.findMany();
 
+  console.log(dataimage);
 
-    
-    
+  
+
       const relatedProducts = [
         { id: 1, name: 'Smartphone X8', price: 599.99, image: '/related1.jpg' },
         { id: 2, name: 'Smartphone X9', price: 699.99, image: '/related2.jpg' },
@@ -41,7 +45,7 @@ const  ProductDeatils  = async ( product:any  ) => {
                 <span className="text-gray-400 mx-2">/</span>
               </li>
               <li className="text-gray-700 font-medium" aria-current="page">
-                {product.name}
+                {database[0].name}
               </li>
             </ol>
           </nav>
@@ -51,14 +55,17 @@ const  ProductDeatils  = async ( product:any  ) => {
             {/* Column 1: Product Images */}
             <div className="md:col-span-2 bg-white p-4 rounded-lg shadow-sm">
               <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
-              <ImageToolkits
-              
-              src="Phone/galaxy.jpg"
+                
+                     <ImageToolkits
+               src='/phone1.jpg'
+               //src={items.image}  
               width={800}
               height={800}
               alt="ax"
               className="h-full w-full object-cover object-center"
               />
+                 
+             
                 {/* <Image
                   src={product.images[0]}
                   alt={product.name}

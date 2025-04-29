@@ -2,7 +2,8 @@ import { CarouselDemo } from "@/components/product/product";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
-const Hero = () => {
+const Hero =  () => {
+
     return ( 
 
         <section className="w-full min-h-screen flex flex-col md:flex-row items-center justify-between px-10 md:px-16 py-10 ">

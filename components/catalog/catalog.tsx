@@ -9,11 +9,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { useSearchParams } from "next/navigation";
+// import { useSearchParams } from "next/navigation";
 
 const CatalogList = () => {
-    const params= useSearchParams()
-    const id = params.get('id')
+    // const params= useSearchParams()
+    // const id = params.get('id')
     return ( 
         <div className=" flex items-center justify-center py-2 px-5">
         <Carousel className="w-full max-w-xs  ">

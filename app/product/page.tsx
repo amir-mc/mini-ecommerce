@@ -1,14 +1,4 @@
-import Link from "next/link";
-import { 
-     Star, 
-     Check, 
-     ChevronLeft, 
-     ChevronRight, 
-     Filter, 
-     ArrowDownWideNarrow 
-   } from 'lucide-react';
 
-import ImageToolkits from "@/components/imagetoolkit";
 import ProductList from "@/modules/product/components/productlist";
 
 type Product = {
