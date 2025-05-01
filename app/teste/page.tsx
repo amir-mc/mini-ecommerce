@@ -1,16 +1,22 @@
 
+import dynamic from "next/dynamic";
 import Wrapp from "./comp";
-import Px from "./ex";
+import { Suspense } from "react";
+
+
+const BigData = dynamic(() => import('./bigdata'), {
+    loading: () => <p>Loading big data...</p>
+    
+  });
+  
 
 const Ax = () => {
     return ( 
-        <div>
-            <Wrapp>
-                as
-            <Px/>
- 
-            </Wrapp>
-        </div>
+     <div>
+
+        <BigData />
+     </div>
+  
      );
 }
  

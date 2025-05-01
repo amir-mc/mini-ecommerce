@@ -17,6 +17,13 @@ const Hero =  () => {
                     More product
                 </Link>
             </Button>
+            <Button asChild className="px-30 my-3" variant="outline">
+            
+                <Link href='/teste'>
+                    More product
+                </Link>
+            </Button>
+
         </div>
   
         {/* Right Part */}
