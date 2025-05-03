@@ -9,15 +9,17 @@ import {
      GalleryThumbnails
    } from 'lucide-react';
 
+  
 import ImageToolkits from "@/components/imagetoolkit";
+import { Promisetype } from "@/lib/prisma";
 
-const ProductList = ({products}:{products:any}) => {
+const ProductList = ({products,product}:{products:any,product:Promisetype.product[]}) => {
     return ( 
         <div className="bg-gray-50 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           {/* Page Header */}
           <div className="mb-8">
-            <h1 className="text-3xl font-bold text-gray-900">All Products</h1>
+            <h1 className="text-3xl font-bold text-gray-900">All Products </h1>
             <p className="mt-2 text-sm text-gray-600">
               Browse our wide selection of products
             </p>
@@ -60,7 +62,7 @@ const ProductList = ({products}:{products:any}) => {
   
           {/* Products Grid */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((product:any) => (
+            {product.map((product:any) => (
               <div key={product.id} className="bg-white rounded-lg shadow-sm overflow-hidden hover:shadow-md transition-shadow duration-300">
                 {/* Product Content */}
                 <div className="p-6">
@@ -73,12 +75,13 @@ const ProductList = ({products}:{products:any}) => {
                       </h3>
                       <ImageToolkits
                        src="Phone/galaxy.jpg"
+                      //  src={product.image}
                        width={800}
                        height={800}
                        alt="ax"
                        className="h-full w-full object-cover object-center"
                       />
-                      <p className="text-sm text-gray-500 mt-1">{product.brand}</p>
+                      <p className="text-sm text-gray-500 mt-1">{product.name}</p>
                     </div>
                     
                   </div>
@@ -87,7 +90,12 @@ const ProductList = ({products}:{products:any}) => {
                   <div className="mt-2 flex items-center">
                   
                     <div className="flex">
-                    {product.inStock ? (
+                  
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                        In Stock
+                      </span>
+                   
+                    {/* {product.inStock ? (
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
                         In Stock
                       </span>
@@ -95,7 +103,7 @@ const ProductList = ({products}:{products:any}) => {
                       <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-red-100 text-red-800">
                         Out of Stock
                       </span>
-                    )}
+                    )} */}
                       {[0, 1, 2, 3, 4].map((rating) => (
                         <Star
                           key={rating}
@@ -115,19 +123,29 @@ const ProductList = ({products}:{products:any}) => {
                   {/* Features */}
                   <div className="mt-3">
                     <ul className="space-y-1">
-                      {product.features.slice(0, 3).map((feature:any, index:any) => (
-                        <li key={index} className="flex items-center">
+                     
+                        <li  className="flex items-center">
                           <Check className="h-4 w-4 text-green-500 mr-2" />
-                          <span className="text-sm text-gray-600">{feature}</span>
+                          <span className="text-sm text-gray-600">Ram:{product.RAM}</span>
                         </li>
-                      ))}
+
+                        <li className="flex items-center">
+                          <Check className="h-4 w-4 text-green-500 mr-2" />
+                          <span className="text-sm text-gray-600">memory:{product.memory}</span>
+                        </li>
+                        <li className="flex items-center">
+                          <Check className="h-4 w-4 text-green-500 mr-2" />
+                          <span className="text-sm text-gray-600">op:{product.OperatingSystem}</span>
+                        </li>
+                      
                     </ul>
                   </div>
   
                   {/* Colors */}
                   <div className="mt-3">
                     <p className="text-sm text-gray-500">
-                      Colors: {product.colors.join(', ')}
+                      Colors: 
+                      {/* {product.colors.join(', ')} */}
                     </p>
                   </div>
   
@@ -141,7 +159,16 @@ const ProductList = ({products}:{products:any}) => {
                   
                     <p className="text-lg font-semibold text-gray-900">
                     
-                      ${product.discountPrice || product.price}
+                     
+                     
+                        <span className="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded">
+                          ${product.price}
+                        </span>
+                    
+                    </p>
+                   
+                    
+                      {/* ${product.discountPrice || product.price}
                       {product.discountPrice && (
                         <span className="ml-2 text-sm text-gray-500 line-through">
                           ${product.price}
@@ -153,7 +180,7 @@ const ProductList = ({products}:{products:any}) => {
                       <span className="text-xs bg-red-100 text-red-800 px-2 py-0.5 rounded">
                         {Math.round((1 - product.discountPrice / product.price) * 100)}% OFF
                       </span>
-                    )}
+                    )} */}
                   </div>
   
                   {/* Actions */}

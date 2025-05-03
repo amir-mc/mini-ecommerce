@@ -1,5 +1,6 @@
 
 import ProductList from "@/modules/product/components/productlist";
+import { getProducts } from "@/modules/services";
 
 type Product = {
      id: number;
@@ -14,7 +15,7 @@ type Product = {
      features: string[];
    };
 
-const Product = () => {
+const Product = async () => {
 
      const products: Product[] = [
           {
@@ -87,10 +88,10 @@ const Product = () => {
             features: ['4K Gaming', '1TB SSD', 'VR Ready']
           }
         ];
-    
+    const product=await getProducts()
     return ( 
 
-      <ProductList products={products} />
+      <ProductList product={product} products={products} />
 
      );
 }

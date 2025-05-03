@@ -1,7 +1,5 @@
 
 import dynamic from "next/dynamic";
-import Wrapp from "./comp";
-import { Suspense } from "react";
 
 
 const BigData = dynamic(() => import('./bigdata'), {
