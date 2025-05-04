@@ -12,8 +12,9 @@ import {
   
 import ImageToolkits from "@/components/imagetoolkit";
 import { Promisetype } from "@/lib/prisma";
+import { ProductWithImages } from "@/types";
 
-const ProductList = ({products,product}:{products:any,product:Promisetype.product[]}) => {
+const ProductList = ({product}:{product:ProductWithImages[]}) => {
     return ( 
         <div className="bg-gray-50 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -56,7 +57,7 @@ const ProductList = ({products,product}:{products:any,product:Promisetype.produc
               </div>
             </div>
             <div className="text-sm text-gray-500">
-              Showing {products.length} products
+              {/* Showing {product.quntity} products */}
             </div>
           </div>
   
@@ -74,8 +75,8 @@ const ProductList = ({products,product}:{products:any,product:Promisetype.produc
                         </Link>
                       </h3>
                       <ImageToolkits
-                       src="Phone/galaxy.jpg"
-                      //  src={product.image}
+                       //src="Phone/galaxy.jpg"
+                        src={product.images[0].images}
                        width={800}
                        height={800}
                        alt="ax"
@@ -135,7 +136,7 @@ const ProductList = ({products,product}:{products:any,product:Promisetype.produc
                         </li>
                         <li className="flex items-center">
                           <Check className="h-4 w-4 text-green-500 mr-2" />
-                          <span className="text-sm text-gray-600">op:{product.OperatingSystem}</span>
+                          <span className="text-sm text-gray-600">os:{product.OperatingSystem}</span>
                         </li>
                       
                     </ul>

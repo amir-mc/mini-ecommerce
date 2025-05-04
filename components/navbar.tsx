@@ -26,7 +26,7 @@ const Navbar = () => {
                 Home
               </Link>
               <Link 
-                href="/products" 
+                href="/product" 
                 className=" hover:text-blue-300 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
               >
                 Products
