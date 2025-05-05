@@ -1,10 +1,11 @@
+import { Inputdata } from "@/components/inputdata";
 
 
   const ProductDetails = () => {
     return (
       
       <div>
-        page
+       <Inputdata/>
       </div>
       
      );
