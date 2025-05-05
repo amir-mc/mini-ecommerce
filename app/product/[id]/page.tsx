@@ -1,5 +1,5 @@
 
-import { products } from "@/modules/mock/data";
+
 import ProductDeatils from "@/modules/product/components/productdetails";
 import { getProductsbyId } from "@/modules/services";
 import { ProductWithImages } from "@/types";
