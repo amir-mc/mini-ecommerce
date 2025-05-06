@@ -1,11 +1,20 @@
-import { Inputdata } from "@/components/inputdata";
+import ProductAdminDetails from "@/modules/view/productadmindetails";
+
+interface ProductIdProps {
+  params: {
+      id: string;
+  };
+}
 
 
-  const ProductDetails = () => {
+  const ProductDetails = async({ params }: ProductIdProps) => {
+  const data= await params
+      const {id}=data
+
     return (
       
       <div>
-       <Inputdata/>
+       <ProductAdminDetails id={id}/>
       </div>
       
      );

@@ -1,12 +1,14 @@
+import { Inputdata } from "@/components/inputdata";
+import { getProductsbyId } from "../services";
 
  
-const ProductAdminDetails = (  ) => {
+const ProductAdminDetails = async ({id}:{id:string}) => {
     
-   
+   const product= await getProductsbyId(id)
     return ( 
       
       <div>
-        
+        <Inputdata product={product} />
       </div>
     
      );

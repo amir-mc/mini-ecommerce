@@ -9,8 +9,11 @@ import {
 } from "@/components/ui/select";
 import { Switch } from "@/components/ui/switch";
 import { Button } from "@/components/ui/button";
+import { categorylist, product } from "@/generated/prisma";
 
-export function Inputdata() {
+
+export function Inputdata(props:{product:product|null}) {
+  const {product}=props
   return (
     <div className="max-w-2xl mx-auto p-6  rounded-lg shadow-md">
       <h2 className="text-2xl font-bold mb-6">Add New Product</h2>
@@ -18,10 +21,10 @@ export function Inputdata() {
       <div className="space-y-6">
         {/* Product Name */}
         <div>
-          <label htmlFor="name" className="block text-sm font-medium mb-2">
+          <label htmlFor="name" className="block text-sm font-medium mb-2 ">
             Product Name
           </label>
-          <Input id="name" placeholder="Enter product name" />
+          <Input  id="name" placeholder="Enter product name"required defaultValue={product?.name || ''}/>
           <p className="mt-1 text-sm text-gray-500">Minimum 2 characters</p>
         </div>
 
@@ -34,6 +37,8 @@ export function Inputdata() {
             id="description"
             placeholder="Enter product description"
             className="min-h-[120px]"
+            required
+             defaultValue={product?.description || ''}
           />
           <p className="mt-1 text-sm text-gray-500">Minimum 10 characters</p>
         </div>
@@ -44,7 +49,8 @@ export function Inputdata() {
             <label htmlFor="price" className="block text-sm font-medium mb-2">
               Price ($)
             </label>
-            <Input id="price" type="number" step="0.01" />
+            <Input id="price" type="number" step="0.01"  required
+             defaultValue={product?.price || ''} />
             <p className="mt-1 text-sm text-gray-500">Minimum $0.01</p>
           </div>
 
@@ -52,7 +58,8 @@ export function Inputdata() {
             <label htmlFor="stock" className="block text-sm font-medium mb-2">
               Stock Quantity
             </label>
-            <Input id="stock" type="number" />
+            <Input id="stock" type="number"  required
+             defaultValue={product?.quntity || ''} />
             <p className="mt-1 text-sm text-gray-500">Minimum 0</p>
           </div>
         </div>
@@ -62,16 +69,20 @@ export function Inputdata() {
           <label htmlFor="category" className="block text-sm font-medium mb-2">
             Category
           </label>
-          <Select>
+          <Select 
+          required
+          defaultValue={product?.category||''}
+          >
             <SelectTrigger>
               <SelectValue placeholder="Select a category" />
             </SelectTrigger>
             <SelectContent>
-              <SelectItem value="electronics">Electronics</SelectItem>
-              <SelectItem value="clothing">Clothing</SelectItem>
-              <SelectItem value="home">Home & Garden</SelectItem>
-              <SelectItem value="books">Books</SelectItem>
-              <SelectItem value="other">Other</SelectItem>
+              {Object.values(categorylist).map((cat)=>
+              (
+              <SelectItem value={cat} key={cat}>{cat}</SelectItem>
+              
+              ))}
+              
             </SelectContent>
           </Select>
         </div>
