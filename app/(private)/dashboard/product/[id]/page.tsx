@@ -1,13 +1,9 @@
 import ProductAdminDetails from "@/modules/view/productadmindetails";
 
-interface ProductIdProps {
-  params: {
-      id: string;
-  };
-}
 
 
-  const ProductDetails = async({ params }: ProductIdProps) => {
+
+  const ProductDetails = async({ params }: {params:Promise<{id:string}>}) => {
   const data= await params
       const {id}=data
 

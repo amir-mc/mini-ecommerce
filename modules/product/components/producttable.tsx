@@ -1,6 +1,8 @@
+'use client'
+
 import Link from "next/link";
 import { ProductWithImages } from "@/types";
-import { getProducts } from "@/modules/services";
+import { deleteProduct, getProducts } from "@/modules/services";
 
 import {
   Table,
@@ -30,11 +32,14 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 
-export async function ProductTable({
+export function ProductTable({
   product,
 }: {
   product: Awaited<ReturnType<typeof getProducts>>;
 }) {
+  const onDeleteHandle=(id:string)=>{
+    deleteProduct(id)
+  }
   return (
     <div className="rounded-md border shadow-sm">
       {/* Header */}
@@ -100,8 +105,10 @@ export async function ProductTable({
                   <Button variant="outline" size="sm">
                     <Edit className="w-4 h-4" />
                   </Button>
-                  <Button variant="outline" size="sm">
+                  <Button onClick={()=>onDeleteHandle(p.id)} variant="outline" size="sm">
+                  
                     <Trash2 className="w-4 h-4 text-red-600" />
+                  
                   </Button>
                 </div>
               </TableCell>

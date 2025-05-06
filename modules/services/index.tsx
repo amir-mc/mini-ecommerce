@@ -1,5 +1,8 @@
+"use server"
+
 import { product } from "@/generated/prisma"
 import { prisma } from "@/lib/prisma"
+import { redirect } from "next/navigation"
 
 export const getProducts= async ()=>{
     const result =await prisma.product.findMany({include:{images:true}})
@@ -26,16 +29,20 @@ const {id}=product
 let result
 if(id){
     result= await prisma.product.update({
-        where:{
-            id,
-
-        },
-        data:product,
+        where:{id:id},
+        data:product
     })
-}else{
+} else{
     result=await prisma.product.create({
         data:product
     })
 }
 return result
 }
+
+export const deleteProduct = async (id:string) => {
+    await prisma.product.delete({where:{id}})
+    redirect('/dashboard/product')
+}
+ 
+ 
