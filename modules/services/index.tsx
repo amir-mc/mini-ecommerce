@@ -1,3 +1,4 @@
+import { product } from "@/generated/prisma"
 import { prisma } from "@/lib/prisma"
 
 export const getProducts= async ()=>{
@@ -19,4 +20,22 @@ export const getProductsbyId= async (id:string)=>{
             return null
         }
     return result
+}
+export const upsertProduct = async (product:product)=>{
+const {id}=product
+let result
+if(id){
+    result= await prisma.product.update({
+        where:{
+            id,
+
+        },
+        data:product,
+    })
+}else{
+    result=await prisma.product.create({
+        data:product
+    })
+}
+return result
 }
