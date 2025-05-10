@@ -1,18 +1,22 @@
 'use client'
 import ProductList from "@/modules/product/components/productlist";
-//import { getProducts } from "@/modules/services";
 import { ProductWithImages } from "@/types";
 import { useEffect, useState } from "react";
-import { getProductsbyApi } from "../services";
 
-const ProductListView =  () => {
-    const [product,setProducts]=useState<ProductWithImages[]>([])
+const ProductListView = () => {
+    const [products, setProducts] = useState<ProductWithImages[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const getProductsData = async () => {
+
+    const fetchProducts = async () => {
         try {
-            setLoading(true);
-            const result = await getProductsbyApi();
+            const response = await fetch('/api/product');
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const result = await response.json();
             
             if (result?.data) {
                 setProducts(result.data);
@@ -20,15 +24,17 @@ const ProductListView =  () => {
                 setError("No products found");
             }
         } catch (err) {
-            setError("Failed to fetch products");
+            setError(err instanceof Error ? err.message : "Failed to fetch products");
             console.error("Fetch error:", err);
         } finally {
             setLoading(false);
         }
     };
-    useEffect(()=>{
-        getProductsData()
-    },[])
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     if (loading) {
         return <div>Loading products...</div>;
     }
@@ -36,10 +42,8 @@ const ProductListView =  () => {
     if (error) {
         return <div>Error: {error}</div>;
     }
-    //const product= getProducts()
-    return ( 
-      <ProductList product={product}  />
-     );
+
+    return <ProductList product={products} />;
 }
- 
+
 export default ProductListView;

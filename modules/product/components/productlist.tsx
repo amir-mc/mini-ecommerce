@@ -76,7 +76,7 @@ const ProductList = ({product}:{product:ProductWithImages[]}) => {
                       </h3>
                       <ImageToolkits
                        //src="Phone/galaxy.jpg"
-                        src={product.images[0].images}
+                       src={product.images?.[0]?.images || '/placeholder-product.jpg'}
                        width={800}
                        height={800}
                        alt="ax"

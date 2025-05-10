@@ -72,7 +72,7 @@ export function ProductTable({
             <TableHead>Status</TableHead>
             <TableHead>Created</TableHead>
             <TableHead className="text-right">Actions</TableHead>
-            <TableHead className="text-right">Details</TableHead>
+           
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -102,8 +102,10 @@ export function ProductTable({
               <TableCell>{/* {p.createdAt} */}</TableCell>
               <TableCell className="text-right">
                 <div className="flex justify-end gap-2">
-                  <Button variant="outline" size="sm">
+                  <Button asChild variant="outline" size="sm">
+                  <Link href={`/dashboard/product/${p.id}`}>
                     <Edit className="w-4 h-4" />
+                    </Link>
                   </Button>
                   <Button onClick={()=>onDeleteHandle(p.id)} variant="outline" size="sm">
                   
@@ -112,14 +114,7 @@ export function ProductTable({
                   </Button>
                 </div>
               </TableCell>
-              <TableCell className="text-right">
-                <Button variant="outline" size="sm" asChild>
-                  <Link href={`/dashboard/product/${p.id}`}>
-                    More details
-                    <Eye className="w-4 h-4 ml-1" />
-                  </Link>
-                </Button>
-              </TableCell>
+            
             </TableRow>
           ))}
         </TableBody>
