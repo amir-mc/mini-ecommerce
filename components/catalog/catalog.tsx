@@ -1,3 +1,4 @@
+// components/catalog/catalog.tsx
 'use client'
 
 import ImageToolkits from "@/components/imagetoolkit";
@@ -9,26 +10,29 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-// import { useSearchParams } from "next/navigation";
+import { ProductWithImages } from "@/types";
 
-const CatalogList = () => {
-    // const params= useSearchParams()
-    // const id = params.get('id')
+interface CatalogListProps {
+  product: ProductWithImages; // Single product, not an array
+}
+
+
+const CatalogList = ({ product }: CatalogListProps) => {
     return ( 
         <div className=" flex items-center justify-center py-2 px-5">
-        <Carousel className="w-full max-w-xs  ">
+        <Carousel className="w-full max-w-xs">
         <CarouselContent>
-          {Array.from({ length: 3 }).map((_, index) => (
-            <CarouselItem key={index}>
-              <div className="p-1 ">
+          {product.images.map((image) => (
+            <CarouselItem key={image.id}>
+              <div className="p-1">
                 <Card>
                   <CardContent className="flex aspect-square items-center justify-center p-6">
                     <ImageToolkits
-                    src={`/phone${index+1}.jpg`}
+                    src={image.images}
                     width={400}
                     height={400}
-                    alt=""
-                    className=""
+                    alt="Product image"
+                    className="object-cover"
                     />
                   </CardContent>
                 </Card>

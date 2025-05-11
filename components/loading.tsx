@@ -13,7 +13,7 @@ export default function LoadingPage() {
           Loading Awesome Content
         </h2>
         <p className="text-gray-600 dark:text-gray-400 mb-6">
-          We're preparing something special for you...
+          We&aposre preparing something special for you...
         </p>
         
         <div className="flex items-center justify-center gap-2 text-sm text-gray-500 dark:text-gray-400">

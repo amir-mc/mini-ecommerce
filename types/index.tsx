@@ -18,3 +18,19 @@ export interface ImageKitUploadResponse {
   customCoordinates: string | null;
   fileType: string;
 }
+
+export type ProductWithImagesss = {
+  id: string;
+  name: string;
+  price: number | null;
+  quantity: number | null;
+  description: string;
+  // ... other product fields
+  images: {
+    id: string;
+    images: string;
+    productId: string | null;
+  }[];
+};
+
+
