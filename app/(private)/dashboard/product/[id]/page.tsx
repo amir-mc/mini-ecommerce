@@ -1,4 +1,6 @@
+import { MiniSpinner } from "@/components/spinner";
 import ProductAdminDetails from "@/modules/view/productadmindetails";
+import { Suspense } from "react";
 
 
 
@@ -10,7 +12,9 @@ import ProductAdminDetails from "@/modules/view/productadmindetails";
     return (
       
       <div>
+          <Suspense fallback={<MiniSpinner size="lg" color="secondary" />}>
        <ProductAdminDetails id={id}/>
+          </Suspense>
       </div>
       
      );

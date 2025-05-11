@@ -1,4 +1,5 @@
 'use client'
+import LoadingPage from "@/components/loading";
 import ProductList from "@/modules/product/components/productlist";
 import { ProductWithImages } from "@/types";
 import { useEffect, useState } from "react";
@@ -36,7 +37,7 @@ const ProductListView = () => {
     }, []);
 
     if (loading) {
-        return <div>Loading products...</div>;
+        return <div><LoadingPage/></div>;
     }
 
     if (error) {

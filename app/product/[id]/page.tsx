@@ -1,8 +1,11 @@
 
 
+import ErrorPage from "@/app/error";
+import { MiniSpinner } from "@/components/spinner";
 import ProductDeatils from "@/modules/product/components/productdetails";
 import { getProductsbyId } from "@/modules/services";
 import { ProductWithImages } from "@/types";
+import { Suspense } from "react";
 
 
 interface ProductIdProps {
@@ -17,9 +20,17 @@ const  ProductId  = async ({ params }: ProductIdProps) => {
     const product=await getProductsbyId(id) as ProductWithImages
     
   
-    return ( 
-     <ProductDeatils  {...product}   />
-    ); 
+       if (!product) {
+            return <ErrorPage/>;
+        }
+
+        return (
+            <Suspense fallback={<MiniSpinner size="lg" />}>
+                <ProductDeatils {...product} />
+            </Suspense>
+        );
+        
+    
 }
  
 export default ProductId;
