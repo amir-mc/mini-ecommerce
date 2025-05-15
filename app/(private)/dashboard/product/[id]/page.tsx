@@ -13,7 +13,7 @@ import { Suspense } from "react";
       
       <div>
           <Suspense fallback={<MiniSpinner size="lg" color="secondary" />}>
-       <ProductAdminDetails id={id}/>
+       <ProductAdminDetails id={id}/> 
           </Suspense>
       </div>
       

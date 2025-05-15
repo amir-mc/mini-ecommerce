@@ -11,3 +11,4 @@ export const imagekit = new ImageKit({
     privateKey: process.env.IMAGEKIT_PRIVATE_KEY!,
     urlEndpoint: process.env.NEXT_PUBLIC_IMAGETOOLKIT_ENDPOINT!
 } as ImageKitConfig);
+

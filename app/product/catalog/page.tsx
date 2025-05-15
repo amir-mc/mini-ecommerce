@@ -3,7 +3,7 @@ import CatalogList from "@/components/catalog/catalog";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { prisma } from "@/lib/prisma";
-import { ProductWithImages } from "@/types/";
+
 
 const Catalog = async ({ 
   searchParams 

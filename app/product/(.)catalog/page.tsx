@@ -2,7 +2,7 @@
 import CatalogList from "@/components/catalog/catalog";
 
 import { prisma } from "@/lib/prisma";
-import { ProductWithImages } from "@/types";
+
 
 export default async function Catalog({
   searchParams,
