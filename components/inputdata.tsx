@@ -15,8 +15,20 @@ import {useForm} from "react-hook-form"
 import { upsertProduct } from "@/modules/services";
 import { useEffect } from "react";
 import ImageUpload from "./imageupload";
+import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
 
 export function Inputdata(props:{products:product|null}) {
+ // const pathname=usePathname()
+  //console.log(pathname)
+ // const params=useParams()
+   //console.log(params)
+  const serchparams=useSearchParams()
+   //console.log(serchparams)
+ // const router=useRouter()
+   //console.log(router)
+const discount=serchparams.get('dis')
+const totall=serchparams.get('total')
+
   const {products}=props
   const {register,handleSubmit,setValue}=useForm<product>()
 
@@ -42,8 +54,13 @@ export function Inputdata(props:{products:product|null}) {
   return (
     <form onSubmit={handleSubmit(onSubmitForm)}  className="max-w-2xl mx-auto p-6 rounded-lg shadow-md">
     <div className="max-w-2xl mx-auto p-6  rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold mb-6">Add New Product</h2>
       
+      <h2 className="text-2xl font-bold mb-6">Add New Product  </h2>
+      <div className=" flex justify-end">
+      <span className="text-sm bg-blue-500 text-black">only {totall} left</span>
+
+      </div>
+      { discount ? <h3 className="text-2xl font-bold mb-6">WOW this product have {discount}% discount</h3> : <h3></h3> }
       <div className="space-y-6">
         {/* Product Name */}
         <div>
