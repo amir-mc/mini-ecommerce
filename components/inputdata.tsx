@@ -4,7 +4,7 @@ import { Textarea } from "@/components/ui/textarea";
 import {
   Select,
   SelectContent,
-  SelectItem,
+  SelectItem, 
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -15,7 +15,8 @@ import {useForm} from "react-hook-form"
 import { upsertProduct } from "@/modules/services";
 import { useEffect } from "react";
 import ImageUpload from "./imageupload";
-import { useParams, usePathname, useRouter, useSearchParams } from "next/navigation";
+//import { useParams, usePathname, useRouter } from "next/navigation";
+import {  useSearchParams } from "next/navigation";
 
 export function Inputdata(props:{products:product|null}) {
  // const pathname=usePathname()
