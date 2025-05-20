@@ -2,6 +2,7 @@
 
 import { product } from "@/generated/prisma"
 import { prisma } from "@/lib/prisma"
+import { revalidatePath } from "next/cache"
 import { redirect } from "next/navigation"
 
 export const getProducts= async ()=>{
@@ -37,6 +38,8 @@ if(id){
         data:product
     })
 }
+revalidatePath('/dashboard/product')
+// revalidatePath barye chache kardan data ha estefade mishe ar vaght ke data ha taghir kard
 return result
 }
 

@@ -17,6 +17,7 @@ import { useEffect } from "react";
 import ImageUpload from "./imageupload";
 //import { useParams, usePathname, useRouter } from "next/navigation";
 import {  useSearchParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 export function Inputdata(props:{products:product|null}) {
  // const pathname=usePathname()
@@ -25,11 +26,14 @@ export function Inputdata(props:{products:product|null}) {
    //console.log(params)
   const serchparams=useSearchParams()
    //console.log(serchparams)
- // const router=useRouter()
+  const router=useRouter()
    //console.log(router)
 const discount=serchparams.get('dis')
 const totall=serchparams.get('total')
 
+  const goBack=()=>{
+    router.back()
+  }
   const {products}=props
   const {register,handleSubmit,setValue}=useForm<product>()
 
@@ -236,12 +240,20 @@ const totall=serchparams.get('total')
         </div>
 
         {/* Form Actions */}
-        <div className="flex justify-end gap-4">
-          <Button variant="outline">Cancel</Button>
-          <Button type="submit">
-            {products?.id ? "Edit product":" Add Product" }
+        <div className="flex justify-between items-center">
+            {/* Left-aligned button (Back to Product) */}
+            <Button onClick={goBack} variant="outline">
+              Back to Product
             </Button>
-        </div>
+
+            {/* Right-aligned buttons (Cancel & Edit/Add) */}
+            <div className="flex gap-4">
+              <Button variant="outline">Cancel</Button>
+              <Button type="submit">
+                {products?.id ? "Edit Product" : "Add Product"}
+              </Button>
+            </div>
+          </div>
       </div>
     </div>
    </form>
