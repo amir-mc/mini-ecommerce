@@ -13,11 +13,12 @@ import { Button } from "@/components/ui/button";
 import { categorylist, product } from "@/generated/prisma";
 import {useForm} from "react-hook-form"
 import { upsertProduct } from "@/modules/services";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ImageUpload from "./imageupload";
 //import { useParams, usePathname, useRouter } from "next/navigation";
 import {  useSearchParams } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export function Inputdata(props:{products:product|null}) {
  // const pathname=usePathname()
@@ -40,21 +41,56 @@ const totall=serchparams.get('total')
   useEffect(() => {
     if (products?.id) {
       setValue("id", products.id); // Set the ID so it's sent to the server
+        toast.success('Product data loaded successfully!');
     }
   }, [products, setValue]);
+  const [submited,setSubmited]=useState(false)
   const onSubmitForm=(data:product)=>{
 
+    setSubmited(true)
+    const toastId = toast.loading('Saving product...');
    
-    const _product={...data,
-      price:parseFloat(data.price?.toString() || '0'),
-      quntity:parseInt(data.quntity?.toString() || '0'),
-      RAM:parseInt(data.RAM?.toString() || '0'),
-      memory:parseInt(data.memory?.toString() || '0'),
-      category:data.category || products?.category
+        try {
+      const _product = {
+        ...data,
+        price: parseFloat(data.price?.toString() || '0'),
+        quntity: parseInt(data.quntity?.toString() || '0'),
+        RAM: parseInt(data.RAM?.toString() || '0'),
+        memory: parseInt(data.memory?.toString() || '0'),
+        category: data.category || products?.category
+      };
+      
+       upsertProduct(_product);
+      
+      toast.update(toastId, {
+        render: 'Product saved successfully!',
+        type: 'success',
+        isLoading: false,
+        autoClose: 3000
+      });
+      } catch (error) {
+      toast.update(toastId, {
+        render: 'Failed to save product!',
+        type: 'error',
+        isLoading: false,
+        autoClose: 3000
+      });
+      console.error('Error saving product:', error);
+    } finally {
+      setSubmited(false);
     }
-    upsertProduct(_product)
   }
+
   
+ useEffect(() => {
+    // Initial toast when component mounts
+    toast.info('Product form ready');
+    
+    return () => {
+      // Clean up toasts when component unmounts
+      toast.dismiss();
+    };
+  }, []);
 
   return (
     <form onSubmit={handleSubmit(onSubmitForm)}  className="max-w-2xl mx-auto p-6 rounded-lg shadow-md">
