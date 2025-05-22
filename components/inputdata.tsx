@@ -41,10 +41,11 @@ const totall=serchparams.get('total')
   useEffect(() => {
     if (products?.id) {
       setValue("id", products.id); // Set the ID so it's sent to the server
-        toast.success('Product data loaded successfully!');
+       
     }
   }, [products, setValue]);
   const [submited,setSubmited]=useState(false)
+  console.log(submited)
   const onSubmitForm=(data:product)=>{
 
     setSubmited(true)
