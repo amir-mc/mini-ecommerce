@@ -13,6 +13,7 @@
     "migrate": "npx prisma migrate dev"
   },
   "dependencies": {
+    "@clerk/nextjs": "^6.20.0",
     "@imagekit/next": "^2.1.0",
     "@prisma/client": "^6.6.0",
     "@radix-ui/react-select": "^2.2.2",

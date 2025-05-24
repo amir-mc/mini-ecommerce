@@ -4,6 +4,14 @@ import "./globals.css";
 import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import ToastProvider from "@/components/ToastProvider";
+import {
+  ClerkProvider,
+  SignInButton,
+  SignUpButton,
+  SignedIn,
+  SignedOut,
+  UserButton,
+} from '@clerk/nextjs'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,6 +36,8 @@ export default function RootLayout({
   ads: React.ReactNode;
 }>) {
   return (
+    
+    <ClerkProvider>
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
       <Navbar />
@@ -42,5 +52,6 @@ export default function RootLayout({
       <Footer/>
       </body>
     </html>
+    </ClerkProvider>
   );
 }
