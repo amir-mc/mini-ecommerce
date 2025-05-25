@@ -2,13 +2,12 @@
 import CatalogList from "@/components/catalog/catalog";
 import { prisma } from "@/lib/prisma";
 
-interface PageProps {
-  searchParams: { [key: string]: string | string[] | undefined };
-}
-
-export default async function Catalog({ searchParams }: PageProps) {
-  // Get the id parameter (could be string or string[])
-  const id = Array.isArray(searchParams.id) ? searchParams.id[0] : searchParams.id;
+export default async function CatalogPage({
+  searchParams,
+}: {
+  searchParams: { id: string }
+}) {
+  const { id } = searchParams;
 
   if (!id) {
     return (
