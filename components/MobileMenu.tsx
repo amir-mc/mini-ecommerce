@@ -33,7 +33,7 @@ const MobileMenu = () => {
           <div className="hover:text-blue-300 focus:outline-none transition-colors duration-300">
             <Auth/>
           </div>
-        </div>
+        </div> 
       </div>
     </details>
   );
