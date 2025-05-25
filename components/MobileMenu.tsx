@@ -23,24 +23,7 @@ const MobileMenu = () => {
         >
           Products
         </Link>
-        <Link 
-          href="/brands" 
-          className="block hover:text-blue-300 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
-        >
-          Brands
-        </Link>
-        <Link 
-          href="/about" 
-          className="block hover:text-blue-300 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
-        >
-          About
-        </Link>
-        <Link 
-          href="/contact" 
-          className="block hover:text-blue-300 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
-        >
-          Contact
-        </Link>
+      
         <div className="flex space-x-4 px-3 py-2">
           <button className="hover:text-blue-300 focus:outline-none transition-colors duration-300">
             <svg className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
