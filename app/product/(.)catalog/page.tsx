@@ -1,14 +1,12 @@
-import { Metadata, ResolvingMetadata } from 'next'
 import CatalogList from "@/components/catalog/catalog";
 import { prisma } from "@/lib/prisma";
 
-type Props = {
-  params: { id: string }
-  searchParams: { [key: string]: string | string[] | undefined }
+interface PageProps {
+  searchParams: { id: string };
 }
 
-export default async function CatalogPage({ searchParams }: Props) {
-  const id = searchParams.id as string; // Cast to string since we know the type
+export default async function CatalogPage({ searchParams }: PageProps) {
+  const { id } = searchParams;
 
   if (!id) {
     return (
