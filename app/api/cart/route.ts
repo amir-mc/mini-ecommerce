@@ -3,7 +3,8 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { currentUser } from '@clerk/nextjs/server';
 
-export async function GET(req: NextRequest) {
+export async function GET() {
+    // ^^^ ESLint is complaining that `req` is not used inside this function.
   const user = await currentUser();
   const userId = user?.id;
   if (userId) {
@@ -17,6 +18,7 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
+    // ^^^ ESLint is complaining that `req` is not used inside this function.
   const user = await currentUser();
   const userId = user?.id;
   if (!userId) {
@@ -47,6 +49,7 @@ export async function POST(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
+  // ^^^ ESLint is complaining that `req` is not used inside this function.
   const user = await currentUser();
   const userId = user?.id;
   if (!userId) {

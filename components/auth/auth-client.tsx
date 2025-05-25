@@ -1,10 +1,11 @@
+// auth-client.tsx
 'use client';
 
 import { UserButton } from "@clerk/nextjs";
 import Adminmenu from "./adminmenu";
 
 interface AuthClientProps {
-  isAdmin?: string;
+  isAdmin?: boolean;
 }
 
 const AuthClient = ({ isAdmin }: AuthClientProps) => {

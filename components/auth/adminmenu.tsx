@@ -10,7 +10,7 @@ const Adminmenu = () => {
                 <UserButton.Link
                 label="Dashboard"
                 labelIcon={<LayoutDashboard/>}
-                href="/dashboard"
+                href="/dashboard/product"
                 >
 
                 </UserButton.Link>

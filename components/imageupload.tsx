@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React, { useState } from "react";
 
 const ImageUpload = ({ productId }: { productId: string }) => {
@@ -72,11 +73,13 @@ const ImageUpload = ({ productId }: { productId: string }) => {
                         {loading ? (
                             <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-gray-900"></div>
                         ) : uploadedImage ? (
-                            <img 
-                                src={uploadedImage.thumbnailUrl} 
-                                alt="Uploaded preview" 
-                                className="h-16 w-16 object-cover rounded"
-                            />
+                            <Image
+                                src={uploadedImage.thumbnailUrl}
+                                alt="Uploaded preview"
+                                width={64}
+                                height={64}
+                                className="object-cover rounded"
+                                />
                         ) : (
                             <>
                                 <svg

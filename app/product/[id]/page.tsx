@@ -4,16 +4,6 @@ import { getProductsbyId } from '@/modules/services';
 import { ProductWithImages } from '@/types';
 import React from 'react';
 
-export async function generateMetadata({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
-  const data = await params;
-  const { id } = data;
-
-
-}
 
 async function page({ params }: { params: Promise<{ id: string }> }) {
   const data = await params;
