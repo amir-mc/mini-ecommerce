@@ -13,10 +13,8 @@ export interface ImageKitUploadResponse {
   width: number;
   size: number;
   filePath: string;
-  tags?: string[];
-  isPrivateFile: boolean;
-  customCoordinates: string | null;
   fileType: string;
+  tags?: string[];
 }
 
 export type ProductWithImagesss = {

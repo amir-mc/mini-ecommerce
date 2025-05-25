@@ -1,3 +1,4 @@
+import { ImageKitUploadResponse } from "@/types";
 import Image from "next/image";
 import React, { useState } from "react";
 
@@ -5,11 +6,7 @@ const ImageUpload = ({ productId }: { productId: string }) => {
     const [file, setFile] = useState<File | null>(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
-    const [uploadedImage, setUploadedImage] = useState<{
-        url: string;
-        fileId: string;
-        thumbnailUrl: string;
-    } | null>(null);
+    const [uploadedImage, setUploadedImage] = useState<ImageKitUploadResponse | null>(null);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const selectedFile = e.target.files?.[0];

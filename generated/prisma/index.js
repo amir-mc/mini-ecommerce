@@ -188,17 +188,18 @@ const config = {
     "db"
   ],
   "activeProvider": "postgresql",
+  "postinstall": false,
   "inlineDatasources": {
     "db": {
       "url": {
         "fromEnvVar": "DATABASE_URL",
-        "value": "prisma+postgres://accelerate.prisma-data.net/?api_key=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhcGlfa2V5IjoiNmM3MjgwOTgtNDkzOS00Nzc4LWIzZGMtMzM4MDVjZGRjNzBhIiwidGVuYW50X2lkIjoiNzQzODViZGMxZjlhNDhmOWM4MDYzZGI0ZWZlZWUwZmMyODYwMWNkNTY0MDQzZGRmZWI5MDMyNzMwMjg2NmNiMCIsImludGVybmFsX3NlY3JldCI6IjQxOWJkOTBlLTU1MmMtNDc1NC1hYjMyLThhOTAwNDU2NmEzZSJ9.DGGWqHdoSjLb2UTCrNLOeIQ6lkOvv8PFp9CiI4n-cZQ"
+        "value": null
       }
     }
   },
   "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\n// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?\n// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nenum categorylist {\n  MOBILE\n  LAPTOP\n  OTHER\n}\n\nmodel product {\n  id              String       @id @default(uuid())\n  name            String\n  price           Float?       @default(0.0)\n  quntity         Int?         @default(0)\n  description     String\n  category        categorylist\n  Display         String\n  Processor       String\n  RAM             Int\n  memory          Int\n  OperatingSystem String\n  Battery         String\n  images          image[]\n  cart            CartItem[]\n}\n\nmodel image {\n  id        String   @id @default(uuid())\n  images    String\n  Product   product? @relation(fields: [productId], references: [id])\n  productId String?\n}\n\nmodel CartItem {\n  id        Int     @id @default(autoincrement())\n  userId    String\n  productId String\n  quantity  Int\n  product   product @relation(fields: [productId], references: [id])\n}\n\nmodel user {\n  id   String @id @default(uuid())\n  name String\n}\n",
   "inlineSchemaHash": "c0a32996deecc148b2f54fac24457d8b76360c542eec6dc29bc0f24aca83fdee",
-  "copyEngine": false
+  "copyEngine": true
 }
 
 const fs = require('fs')
@@ -235,3 +236,9 @@ const PrismaClient = getPrismaClient(config)
 exports.PrismaClient = PrismaClient
 Object.assign(exports, Prisma)
 
+// file annotations for bundling tools to include these files
+path.join(__dirname, "libquery_engine-debian-openssl-3.0.x.so.node");
+path.join(process.cwd(), "generated/prisma/libquery_engine-debian-openssl-3.0.x.so.node")
+// file annotations for bundling tools to include these files
+path.join(__dirname, "schema.prisma");
+path.join(process.cwd(), "generated/prisma/schema.prisma")

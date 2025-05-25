@@ -35,10 +35,8 @@ export async function POST(req: Request) {
         include:{images:true}
         })
     return NextResponse.json({
-      url: uploadResponse.url,
-      fileId: uploadResponse.fileId,
-      thumbnailUrl: uploadResponse.thumbnailUrl,
-      data:uploadProduct
+      ...uploadResponse, // ✅ Send the full object
+        data: uploadProduct,
     });
      
     
