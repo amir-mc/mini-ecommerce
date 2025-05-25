@@ -1,6 +1,6 @@
-
+'use client'
+import { useCart } from "@/app/hook/usecart";
 import ImageToolkits from "@/components/imagetoolkit";
-import { prisma, Promisetype } from "@/lib/prisma";
 import { ProductWithImages } from "@/types";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
@@ -8,21 +8,8 @@ import Link from "next/link";
 
  
 
-const  ProductDeatils  = async ( product:ProductWithImages  ) => {
-  const database :Promisetype.product[] = await prisma.product.findMany();
-  const dataimage :Promisetype.image[]  = await prisma.image.findMany();
-
-  console.log(dataimage);
-
-  
-
-      const relatedProducts = [
-        { id: 1, name: 'Smartphone X8', price: 599.99, image: '/related1.jpg' },
-        { id: 2, name: 'Smartphone X9', price: 699.99, image: '/related2.jpg' },
-        { id: 3, name: 'Smartphone X9 Lite', price: 549.99, image: '/related3.jpg' },
-        { id: 4, name: 'Smartphone X8 Pro', price: 649.99, image: '/related4.jpg' }
-      ];
-
+const  ProductDeatils  = ( product:ProductWithImages  ) => {
+  const { addToCartMutation } = useCart();
     return ( 
         <div className="bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -58,7 +45,6 @@ const  ProductDeatils  = async ( product:ProductWithImages  ) => {
               <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-lg">
                 
                      <ImageToolkits
-               //src='/phone1.jpg'
              src={product.id ? product.images[0].images : '/image'}
               width={800}
               height={800}
@@ -166,6 +152,7 @@ const  ProductDeatils  = async ( product:ProductWithImages  ) => {
    
               <div className="mt-8 flex space-x-4">
                 <button
+                onClick={()=>addToCartMutation.mutate(product.id)}
                   type="button"
                   className="flex-1 bg-indigo-600 py-3 px-8 border border-transparent rounded-md text-base font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                 >
@@ -229,38 +216,6 @@ const  ProductDeatils  = async ( product:ProductWithImages  ) => {
                   </div>
                 </dl>
               </div>
-            </div>
-   
-            {/* Column 4: Related Products */}
-            <div className="bg-white p-6 rounded-lg shadow-sm">
-              <h2 className="text-lg font-medium text-gray-900">You may also like</h2>
-              
-              <div className="mt-6 grid grid-cols-2 gap-4">
-                {relatedProducts.map((item) => (
-                  <div key={item.id} className="group relative">
-                    <div className="aspect-w-1 aspect-h-1 w-full overflow-hidden rounded-md bg-gray-200">
-                       <ImageToolkits
-                        src='Phone/apple.jpg'
-                        alt=""
-                        width={300}
-                        height={300}
-                        className="h-full w-full object-cover object-center group-hover:opacity-75"
-                      /> 
-                    </div>
-                    <div className="mt-2">
-                      <h3 className="text-sm font-medium text-gray-900">
-                        <Link href={`/products/${item.id}`}>
-                          <span aria-hidden="true" className="absolute inset-0" />
-                          {item.name}
-                        </Link>
-                      </h3>
-                      <p className="text-sm font-semibold text-gray-900">${item.price}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-   
-              
             </div>
           </div>
         </div>

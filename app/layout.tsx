@@ -5,13 +5,10 @@ import Navbar from "@/components/navbar";
 import Footer from "@/components/footer";
 import ToastProvider from "@/components/ToastProvider";
 import {
-  ClerkProvider,
-  SignInButton,
-  SignUpButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
+  ClerkProvider
 } from '@clerk/nextjs'
+import ReactQueryProvider from "@/provider/reactquery";
+import { Toaster } from "@/components/ui/sonner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,6 +35,7 @@ export default function RootLayout({
   return (
     
     <ClerkProvider>
+      <ReactQueryProvider>
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}>
       <Navbar />
@@ -48,10 +46,12 @@ export default function RootLayout({
       </div>
         {children}
         <ToastProvider />
+        <Toaster/>
       </main>  
       <Footer/>
       </body>
     </html>
+    </ReactQueryProvider>
     </ClerkProvider>
   );
 }

@@ -1,36 +1,32 @@
 
+import ProductDeatils from '@/modules/product/components/productdetails';
+import { getProductsbyId } from '@/modules/services';
+import { ProductWithImages } from '@/types';
+import React from 'react';
 
-import ErrorPage from "@/app/error";
-import { MiniSpinner } from "@/components/spinner";
-import ProductDeatils from "@/modules/product/components/productdetails";
-import { getProductsbyId } from "@/modules/services";
-import { ProductWithImages } from "@/types";
-import { Suspense } from "react";
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const data = await params;
+  const { id } = data;
 
 
-interface ProductIdProps {
-    params: {
-        id: string;
-    };
 }
 
-const  ProductId  = async ({ params }: ProductIdProps) => {
-    const data= await params
-    const {id}=data
-    const product=await getProductsbyId(id) as ProductWithImages
-    
-  
-       if (!product) {
-            return <ErrorPage/>;
-        }
+async function page({ params }: { params: Promise<{ id: string }> }) {
+  const data = await params;
+  const { id } = data;
+  const product = (await getProductsbyId(id)) as ProductWithImages;
 
-        return (
-            <Suspense fallback={<MiniSpinner size="lg" />}>
-                <ProductDeatils {...product} />
-            </Suspense>
-        );
-        
+
+  return (
+    <section>
     
+      <ProductDeatils  {...product} />
+    </section>
+  );
 }
- 
-export default ProductId;
+
+export default page;

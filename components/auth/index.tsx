@@ -1,27 +1,31 @@
-
 import {
   SignInButton,
-  SignUpButton,
   SignedIn,
   SignedOut,
-  UserButton,
-} from '@clerk/nextjs'
-import { currentUser } from '@clerk/nextjs/server'
-import Adminmenu from './adminmenu';
+} from '@clerk/nextjs';
+import { currentUser } from '@clerk/nextjs/server';
+import AuthClient from './auth-client';
 
- async function Auth() {
-    const user =await currentUser()
-    const isAdmin= user?.privateMetadata?.isAdmin;
-    return(
-        <div>
-            <SignedIn>
-              {isAdmin ? <Adminmenu/> :<UserButton />}
-            </SignedIn>
-            <SignedOut>
-              <SignInButton />
-            </SignedOut>
-            
-        </div>
-    )
+interface MyMetadata {
+  isAdmin?: string;
 }
-export default Auth
+
+async function Auth() {
+  const user = await currentUser();
+  const metadata = user?.privateMetadata as MyMetadata;
+
+  const isAdmin = metadata.isAdmin;
+
+  return (
+    <div>
+      <SignedIn>
+        <AuthClient isAdmin={isAdmin} />
+      </SignedIn>
+      <SignedOut>
+        <SignInButton />
+      </SignedOut>
+    </div>
+  );
+}
+
+export default Auth;

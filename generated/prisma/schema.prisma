@@ -34,6 +34,7 @@ model product {
   OperatingSystem String
   Battery         String
   images          image[]
+  cart            CartItem[]
 }
 
 model image {
@@ -41,6 +42,14 @@ model image {
   images    String
   Product   product? @relation(fields: [productId], references: [id])
   productId String?
+}
+
+model CartItem {
+  id        Int     @id @default(autoincrement())
+  userId    String
+  productId String
+  quantity  Int
+  product   product @relation(fields: [productId], references: [id])
 }
 
 model user {

@@ -1,8 +1,8 @@
 import { prisma } from "@/lib/prisma";
 import { NextResponse } from "next/server";
 
-export async function GET(req: Request) {
-    console.log(req)
+export async function GET() {
+    
     try {
         const result = await prisma.product.findMany({include:{images:true}});
         return NextResponse.json({

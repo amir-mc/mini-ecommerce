@@ -279,9 +279,9 @@ const totall=serchparams.get('total')
         {/* Form Actions */}
         <div className="flex justify-between items-center">
             {/* Left-aligned button (Back to Product) */}
-            <Button onClick={goBack} variant="outline">
-              Back to Product
-            </Button>
+            <Button type="button" onClick={goBack} variant="outline">
+                 Back to Product
+                </Button>
 
             {/* Right-aligned buttons (Cancel & Edit/Add) */}
             <div className="flex gap-4">

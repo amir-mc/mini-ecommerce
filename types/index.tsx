@@ -32,5 +32,8 @@ export type ProductWithImagesss = {
     productId: string | null;
   }[];
 };
+export type CartWithProduct = Prisma.CartItemGetPayload<{
+  include: { product: true; Images: true };
+}>;
 
 
