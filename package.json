@@ -9,8 +9,7 @@
     "lint": "next lint",
     "studio": "npx prisma studio",
     "generate": "npx prisma generate",
-    "migrate": "npx prisma migrate dev",
-    "prepare": "echo 'Skipping husky installation' && exit 0"
+    "migrate": "npx prisma migrate dev"
   },
   "dependencies": {
     "@clerk/nextjs": "^6.20.0",
